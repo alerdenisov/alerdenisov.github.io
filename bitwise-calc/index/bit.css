@@ -1,0 +1,91 @@
+
+	#calc {
+		padding: 1.5em;
+	}
+	#calc .out-row {
+		margin-bottom: 1em;
+	}
+	#calc .out { 
+		font-size: 18px; 
+		font-weight: bold;
+		line-height: 32px;
+		text-align: center;
+		border: 2px solid #E2E6E8; 
+		font-family: Consolas, monospace;
+		color:  black;
+		display: inline-block;
+		position: relative;
+		background-color: white;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+
+	#calc .out.disabled {
+		background-color:  #E2E6E8;
+		border-color:  #E2E6E8;
+	}
+
+	#calc .out-bit {
+		width: 35px;
+		height: 35px;
+	}
+
+	#calc .out .index { 
+		position: absolute;
+		font-size: 8px;
+		line-height: 8px;
+		color: white;
+		right: 0.2em; top: 0.2em;
+		font-family: "futura-pt", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		text-transform: uppercase;
+	}
+
+	#calc .out-group { 
+		position: relative;
+		margin-bottom: 1.55em;
+		margin-right: 1em;
+	}
+
+	#calc .out-group:last-child {
+		margin-right: 0;
+	}
+
+	#calc .out-group2 {
+		position: relative;
+		margin-bottom: 1.55em;
+	}
+
+	#calc .out-group .out-label {
+		position: absolute;
+		font-family: "futura-pt", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		text-transform: uppercase;
+		font-weight: bold;
+
+		font-size: 12px;
+		text-align: center;
+		bottom: -1.45em;
+		left: 0; right: 0;
+
+		color: #E2E6E8;
+	}
+	#calc .out-bits .out .out-label {
+    	bottom: -25px;
+    	font-size: 9px;
+	}
+
+	#calc .out.active,
+	#calc a.out:hover {
+		text-decoration: none;
+		border-color: #5886CE;
+		background-color: #5886CE;
+		color: white;
+	}
+
+	#calc a.out:focus,
+	#calc a.out:active {
+		text-decoration: none;
+	}
+
+	#calc .out.active[index="1"] { background-color: #FF7416; border-color: #FF7416; }
+	#calc .out.active[index="2"] { background-color: #42729B; border-color: #42729B; }
+	#calc .out.active[index="3"] { background-color: #D33257; border-color: #D33257; }
+	#calc .out.active[index="4"] { background-color: #71BA51; border-color: #71BA51; }

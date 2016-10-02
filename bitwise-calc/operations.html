@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>bitwise-calc | Aler Denisov GitPage</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="// const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              // window.webkitRequestAnimationFrame || window.msRequestAnimatio">
+<meta property="og:type" content="website">
+<meta property="og:title" content="bitwise-calc">
+<meta property="og:url" content="http://alerdenisov.github.io/bitwise-calc/operations.html">
+<meta property="og:site_name" content="Aler Denisov GitPage">
+<meta property="og:description" content="// const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              // window.webkitRequestAnimationFrame || window.msRequestAnimatio">
+<meta property="og:updated_time" content="2016-10-02T09:21:43.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bitwise-calc">
+<meta name="twitter:description" content="// const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              // window.webkitRequestAnimationFrame || window.msRequestAnimatio">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.6.0(styles/monokai.min.css),jquery.owlcarousel@1.31(owl.carousel.css+owl.theme.css)">
+
+  <link rel="stylesheet" href="/styles/main.css">
+  
+
+
+  <script src="//cdn.jsdelivr.net/g/jquery@2.2.4"></script>
+</head>
+
+<body>
+
+  <!--[if lt IE 10] 
+  <p class="browsehappy">
+    You are using an strong outdated <strong>browser</strong>. 
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+  </p>
+  ![endif]-->
+  
+  
+
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"> 
+<div style="width: 100%;overflow: hidden;background-color: #fbfbfb;">
+
+<script src="/bitwise-calc/index/biwise.js"></script>
+<link rel="stylesheet" href="/bitwise-calc/index/bit.css">
+
+<script>
+// const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              // window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+$(function() {
+	const binaryOptions = { allowIndexes: false };
+	const binaryA = new BinaryData(0, 8, binaryOptions);
+	const binaryB = new BinaryData(0, 8, binaryOptions);
+	const binaryF = new BinaryData(0, 8, binaryOptions);
+
+	binaryA.toggle(1);
+	binaryA.toggle(2);
+
+	binaryB.toggle(0);
+	binaryB.toggle(1);
+
+	const renderOptions    = { cols: 2, showMath: false, showByte: false };
+
+	const rendererA = new BinaryRenderer($("#BinaryCalculatorA"), binaryA, renderOptions);
+	const rendererB = new BinaryRenderer($("#BinaryCalculatorB"), binaryB, renderOptions);
+
+
+	const renderFinalOptions    = { cols: 2, showMath: false, showByte: false, bit: { allowSet: false } }; 
+
+	const rendererF = new BinaryRenderer($("#BinaryCalculatorF"), binaryF, renderFinalOptions);
+
+	rendererA.loop();
+	rendererB.loop();
+
+	const operations = {
+		and: function(a,b) { return a & b; },
+		or:  function(a,b) { return a | b; },
+		xor: function(a,b) { return a ^ b; }
+	};
+
+	let operation = "or";
+
+	const calculate = ()=> {
+		binaryF.change(operations[operation](binaryA.decial, binaryB.decial));
+		requestAnimationFrame(calculate);
+	};
+
+	$(".BinaryOperation").click(function(){
+		const $clicked = $(this);
+		operation = $clicked.data("operation");
+		$(".BinaryOperation").removeClass("active");
+		$clicked.addClass("active"); return false;
+	});
+
+	calculate();
+	
+	rendererF.loop();
+});
+</script>
+<div class=".container-fluid" id="calc">
+	<div class="row -fl-col">
+		<div class="col-xs-12">
+			<div class="-fl-row -grow">
+				<div class="-grow">
+					<div id="BinaryCalculatorA"></div>
+					<div id="BinaryCalculatorB"></div>
+					<div id="BinaryCalculatorF"></div>
+				</div>
+				<div id="BinaryOperationControls" class="-fl-col -al-stretch -grow out-dec" style="padding-bottom: 1em;">
+					<div class="-fl-col -al-stretch -ju-center out-group -grow">
+						<span class="out-label">Operations</span>
+						<a href="#" data-operation="and" class="BinaryOperation active out out-dec">& <span class="small">(AND)</span></a>
+						<a href="#" data-operation="or" class="BinaryOperation out out-dec">| <span class="small">(OR)</span></a>
+						<a href="#" data-operation="xor" class="BinaryOperation out out-dec">^ <span class="small">(XOR)</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+</section>
+      </div>
+      
+    </div>
+    
+    
+<script>
+  var disqus_shortname = 'alerdenisov-github-ios';
+  
+  var disqus_url = 'http://alerdenisov.github.io/bitwise-calc/operations.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.jsdelivr.net/g/tether@1.3.7,highlight.js@9.6.0(highlight.min.js+languages/cs.min.js),jquery.owlcarousel@1.31"></script>
+
+
+<script src="https://use.typekit.net/hnx1lyt.js"></script> 
+<script>
+  try{Typekit.load({ async: true });}catch(e){}
+</script>
+
+
+<script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

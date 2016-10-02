@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Побитовые операции над котятами | Aler Denisov GitPage</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="О чем статьяВ данной статье, я хочу на простом примере рассказать про битовые операции в программировании. Битовые операции активно используются на протяжении всей истории электроники и вычислительной">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Побитовые операции над котятами">
+<meta property="og:url" content="http://alerdenisov.github.io/2016/09/30/bitwise/index.html">
+<meta property="og:site_name" content="Aler Denisov GitPage">
+<meta property="og:description" content="О чем статьяВ данной статье, я хочу на простом примере рассказать про битовые операции в программировании. Битовые операции активно используются на протяжении всей истории электроники и вычислительной">
+<meta property="og:image" content="http://alerdenisov.github.io/bitwise-calc/rendercat/images/cats.png">
+<meta property="og:image" content="http://alerdenisov.github.io/bitwise-calc/rendercat/images/2.png">
+<meta property="og:image" content="http://alerdenisov.github.io/bitwise-calc/rendercat/images/3.png">
+<meta property="og:image" content="http://alerdenisov.github.io/bitwise-calc/rendercat/images/cat-multicolor.png">
+<meta property="og:updated_time" content="2016-10-02T12:58:14.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Побитовые операции над котятами">
+<meta name="twitter:description" content="О чем статьяВ данной статье, я хочу на простом примере рассказать про битовые операции в программировании. Битовые операции активно используются на протяжении всей истории электроники и вычислительной">
+<meta name="twitter:image" content="http://alerdenisov.github.io/bitwise-calc/rendercat/images/cats.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.6.0(styles/monokai.min.css),jquery.owlcarousel@1.31(owl.carousel.css+owl.theme.css)">
+
+  <link rel="stylesheet" href="/styles/main.css">
+  
+
+
+  <script src="//cdn.jsdelivr.net/g/jquery@2.2.4"></script>
+</head>
+
+<body>
+
+  <!--[if lt IE 10] 
+  <p class="browsehappy">
+    You are using an strong outdated <strong>browser</strong>. 
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+  </p>
+  ![endif]-->
+  
+   
+    <div class="MainMenu container-fluid">
+  <nav class="navbar navbar-dark bg-inverse navbar-fixed-top">
+    <a href="/" class="navbar-brand -display">AlerDenisov</a>
+    <ul class="nav navbar-nav">
+      
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      
+        <li class="nav-item"><a class="nav-link" href="/archives">Archives</a></li>
+      
+    </ul>
+
+    <ul class="nav navbar-nav pull-xs-right">
+
+      <li class="nav-item"><a href="#" class="nav-link"><span class="flag flag-us"></span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><span class="flag flag-ru"></span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><span class="flag flag-kr"></span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><span class="flag flag-cn"></span></a></li>
+
+      <!-- <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-lock"></span></a></li> -->
+      <!-- <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-search"></span></a></li> -->
+    </ul>
+  </nav>  
+</div>
+    
+  
+
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+<div class="container-fluid">
+  <div class="MainBlock row -invert ">
+    <img src="/images/bg-bitwise.png" alt="" class="BackgroundImage" data-color="rgba(0,0,0,0.4)">
+    <div class="box col-xs container-fluid">
+      <div class="row flex-items-xs-center">
+        <div class="MainBackground">
+          <img 
+            src="/images/bg-bitwise.png" alt="" 
+            class="BackgroundImage" 
+            data-color="rgba(0,0,0,0.5)" 
+            data-color-second="" 
+            data-color-second-pos="75%">
+        </div>
+        <div class="postSummary col-xs-10 flex-column">
+          <h6 class="flex-grow">
+            
+               
+                <a href="http://alerdenisov.github.io/tags/gamedev/">
+                <span class="tag tag-default">gamedev</span>
+                </a>
+               
+                <a href="http://alerdenisov.github.io/tags/article/">
+                <span class="tag tag-default">article</span>
+                </a>
+               
+                <a href="http://alerdenisov.github.io/tags/unity/">
+                <span class="tag tag-default">unity</span>
+                </a>
+               
+                <a href="http://alerdenisov.github.io/tags/javascript/">
+                <span class="tag tag-default">javascript</span>
+                </a>
+              
+            
+          </h6>
+
+          <div class="metaRow">
+            <h6 class="date">
+  <span class="-display -faded">
+    <span class="fa fa-calendar-o"></span>
+    <time datetime="2016-09-30T15:12:43.000Z" itemprop="datePublished">2016-09-30</time>
+  </span>
+</h6>
+    
+            
+	<h5 class="commentCount">
+		<span class="-display">
+			<a class="article-category-link" href="/categories/test/">test</a>
+		</span>
+	</h5>
+        
+          </div>
+          
+  
+    <h1 class="article-title title" itemprop="name">
+      Побитовые операции над котятами
+    </h1>
+  
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <article id="post-bitwise" class="BlogSingle row flex-items-xs-bottom flex-items-xs-center article article-type-post" itemscope itemprop="blogPost">
+    <div class="col-xs-12">
+      <div class="row flex-items-xs-top flex-items-xs-center">
+        <div class="PageContent col-xs-12 col-lg-10 col-xl-7 -stick-in-parent">
+          
+            <h3 id="О-чем-статья"><a href="#О-чем-статья" class="headerlink" title="О чем статья"></a>О чем статья</h3><p>В данной статье, я хочу на простом примере рассказать про битовые операции в программировании. Битовые операции активно используются на протяжении всей истории электроники и вычислительной техники, но современные программисты часто оставляют этот инструмент без внимания. Чтобы статья была максимально приближена к реальности, я подготовил пример c несуществующей игрой и абстрактными котятами. </p>
+<p>Расскажу об одном из способов применения битовых операций, которым я сам регулярно пользуюсь при разработке игр. Речь пойдет об упаковке и распаковке данных с помощью битовых операций. </p>
+<blockquote><p>Вы узнаете как запаковать JSON:<br><code>{ &quot;color&quot;: &quot;ginger&quot;, &quot;age&quot;: 3, &quot;tailStripes&quot;: true, &quot;backStripes&quot;: true, &quot;faceStripes&quot;: true }</code> в число <code>807</code></p>
+</blockquote>
+<h2 id="Задача"><a href="#Задача" class="headerlink" title="Задача"></a>Задача</h2><p>Давайте представим, что мы работаем над игрой — симулятором сильных независимых женщин, — и получаем от отдела дизайна задание по добавлению котят в игру. На момент постановки задачи котята бывают <em>5 цветов</em>, но в дальнейшем их может стать больше (не больше 10).<br><img src="/bitwise-calc/rendercat/images/cats.png" alt=""><br><a id="more"></a> </p>
+<p>Кроме разных цветов у котят могут появляться полоски на мордашках, хвостиках и спинках:<br><img src="/bitwise-calc/rendercat/images/2.png" alt=""></p>
+<p>Помимо цвета и полосок котята могут взрослеть, но не могут быть старше 6 месяцев. Возраст отражается в длине их тушек:<br><img src="/bitwise-calc/rendercat/images/3.png" alt=""></p>
+<h3 id="Реализация"><a href="#Реализация" class="headerlink" title="Реализация"></a>Реализация</h3><p>Начнем с того, что опишем простой класс <code>Kitten</code> с полями под необходимые данные: <em>цвет</em>, <em>полоски</em>, <em>возраст</em>:
+ </p>
+<pre><code class="js">class Kitten 
+{
+    constructor(color, age, tailStripes, backStripes, faceStripes) {
+        this.color = color;
+        this.age   = age;
+        this.tailStripes = tailStripes;
+        this.backStripes = backStripes;
+        this.faceStripes = faceStripes;
+    }
+}
+</code></pre>
+<p>Так как мы работаем над уже «существующей» игрой, попросим движок вывести на экран несколько котят, чтобы убедиться в правильности выполнения задачи: </p>
+<pre><code class="js">const colors = [&quot;devil&quot;,&quot;black&quot;,&quot;white&quot;,&quot;gray&quot;,&quot;ginger&quot;];
+
+for(let i = 0; i &lt; 5; i++) {
+    kitten_render(new Kitten(
+        colors[i],  // цвета от Devil до Ginger
+        i + 2,      // возраст от 2 до 6
+        i % 2 != 0, // каждый второй котенок без полосок на хвосте
+        i % 3 == 0, // каждый третий котенок с полосками на спинке
+        i % 2 == 0  // каждый второй котенок с полосками на мордочке
+    ));
+}
+</code></pre>
+<p>Запускаем код и видим, что задача выполнена, и можно идти отдыхать.</p>
+<iframe src="/bitwise-calc/rendercat.html" width="100%" height="370" frameborder="0" allowfullscreen></iframe>
+<h3 id="Оптимизация"><a href="#Оптимизация" class="headerlink" title="Оптимизация"></a>Оптимизация</h3><p>Но на следующий же день из отдела QA\техлида\сторонника оптимизации, приходит задача в таск-менеджер: <strong>Оптимизировать загрузку комнаты</strong>. В подробном описании говорится, что появился заметный лаг при входе в комнату сильной независимой женщины.</p>
+<p>При изучении проблемы становится понятно, что время загрузки увеличилось пропорционально времени загрузки JSON данных по сети, так как в среднем в комнате по 40-50 котят, и объекты <code>Kitten</code> занимают много места:</p>
+<pre><code class="json">{
+    &quot;color&quot;: &quot;ginger&quot;,
+    &quot;age&quot;: 3,
+    &quot;tailStripes&quot;: true,
+    &quot;backStripes&quot;: true,
+    &quot;faceStripes&quot;: true
+}
+</code></pre>
+<p>Количество котят уменьшать нельзя, нужно оптимизировать формат сохранения. Можно сократить названия ключей, но есть вариант лучше: сохранять <em>новорожденного дьявольского котенка без полосок</em> как <code>0</code>, а <em>новорожденного черного котенка с полосками на хвостике</em> как <code>1</code> и т.д. со всеми вариантами котят. Чтобы получать из объекта <code>Kitten</code> целочисленное значение и не составлять таблицу всех возможных котят, мы воспользуемся битовыми операциями.</p>
+<h4 id="Упаковка-данных"><a href="#Упаковка-данных" class="headerlink" title="Упаковка данных"></a>Упаковка данных</h4><p>Для эффективной запаковки данных мы будем использовать битовые операции над целочисленными значениями. Чтобы понять процесс, давайте разберемся, что такое целочисленное значение для компьютера. Все данные компьютер воспринимает как набор двоичных значений: <code>0</code> и <code>1</code>, а целочисленные значения как совокупность 32-х двоичных значений (актуально для js и Int32 в строго типизированных языках).<br>Приведу табличку значений от 0 до 8 и их двоичное представление:</p>
+<p> <code>0000 0000 0000 0000 0000 0000 0000 0000</code>  <code>0</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0001</code>  <code>1</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0010</code>  <code>2</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0011</code>  <code>3</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0100</code>  <code>4</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0101</code>  <code>5</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0110</code>  <code>6</code><br> <code>0000 0000 0000 0000 0000 0000 0000 0111</code>  <code>7</code><br> <code>0000 0000 0000 0000 0000 0000 0000 1000</code>  <code>8</code> </p>
+<p>И отдельно для значения 16:</p>
+<p> <code>0000 0000 0000 0000 0000 0000 0001 0000</code>  <code>16</code> </p>
+<p>Прошу вас обратить особое внимание на двоичное представление значений <code>1</code>, <code>2</code>, <code>4</code>, <code>8</code> и <code>16</code>. Их объединяет особенность: все двоичные значения, кроме одного, равны 0. Чем это удобно для нас? Мы можем сказать, что первый бит — это полоски на хвостике, второй — на спинке, а третий - мордашка. Тогда для котенка с полосками на спинке и хвостике первый и второй бит будут равны <code>1</code>, а третий - <code>0</code>. Получим: <code>0000 0011</code> или <code>3</code> в десятичном представлении. Давайте посмотрим в виде таблицы:</p>
+<table>
+<thead>
+<tr>
+<th>Место</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Хвостик</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td>Cпинка</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Мордашка</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td><em>Итого (бинарно)</em></td>
+<td style="text-align:center"><code>100</code></td>
+<td style="text-align:center"><code>111</code></td>
+<td style="text-align:center"><code>010</code></td>
+</tr>
+<tr>
+<td><em>Итого (десятично)</em></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<p>Давайте начнем записывать формат запаковки в комментариях к объекту Kitten:</p>
+<pre><code class="cs"> ХХХ
+ ││└ Tail stripes flag
+ │└─ Back stripes flag
+ └── Face stripes flag
+</code></pre>
+<p>Используя полученные знания, уже можно сократить объем данных до: <code>{ &quot;color&quot;: &quot;ginger&quot;, &quot;age&quot;:3, &quot;stripes&quot;: 3 }</code>, это заметно сократит объем передаваемых данных, но наша цель — одно целочисленное значение.</p>
+<p>Цвет в отличие от полосок может быть только один, то есть дьявольско-рыжего котенка в игре быть не может, а так же цветов не больше 10. Так как 9 (считаем вместе с 0) в двоичной системе это: <code>1001</code>, для хранения нам нужно 4 бита. Учтивая, что <code>1111</code> - это 15, у нас будет запас на 6 дополнительных цветов. </p>
+<p>Так как котята в нашем случае не могут быть старше 6 месяцев, для записи возраста хватит трех битов (<code>111</code> - это 7). Учитывая цвет и возраст, дополняем наш формат запаковки данных:</p>
+<pre><code class="cs"> ZZZYYYYХХХ                      10 bits
+ └┬┘└─┬┘││└ Tail stripes flag     1 bit
+  │   │ │└─ Face stripes flag     1 bit
+  │   │ └── Back stripes flag     1 bit
+  │   └──── Color data            4 bits
+  └──────── Age data              3 bit
+</code></pre>
+<p>Поэкспериментируем со значениями. В какулятор ниже попробуйте получить значение для котенка с полосками на хвостике и мордашке, серого цвета и 4-х месяцев от роду:<br><code>101</code>  – флаги для полосок<br><code>0011</code> – цвет котенка (3)<br><code>100</code>  – возраст котенка (4)</p>
+<p>Запишите последовательно все значения в калькулятор (<code>1000011101</code>):</p>
+<iframe src="/bitwise-calc/index.html" width="100%" height="210" frameborder="0" allowfullscreen></iframe>
+<p>Получите 541 в десятичном представлении. То есть для сохранения указанного выше котенка нужно будет записать в JSON <code>541</code>, а не: <code>{&quot;color&quot;: &quot;gray&quot;, &quot;age&quot;:4, &quot;tailStripes&quot;:true, &quot;backStripes&quot;:true, &quot;faceStripes&quot;:false }</code>.</p>
+<h5 id="Запись-значений-в-бинарные-данные"><a href="#Запись-значений-в-бинарные-данные" class="headerlink" title="Запись значений в бинарные данные"></a>Запись значений в бинарные данные</h5><p>В ручную у нас вышло получить <code>541</code> из котенка, давайте теперь разберемся как это сделать в коде. Самое замечательное, что битовые операции (bitwise) во всех мне известных языках имеют одинаковый синтаксис, и пример на JS можно использовать в C#, Java, C++.</p>
+<p>Единственный (pascal не в счет) известный мне синтаксис битовых операций выглядит следующим образом (что он делает и как - разберем дальше):</p>
+<pre><code class="js">a &amp; b    // Побитовое И 
+a | b    // Побитовое ИЛИ
+a ^ b    // Побитовое НЕ И (исключающее ИЛИ)
+~a       // Побитовое НЕ 
+a &lt;&lt; b   // Сдвиг влево 
+a &gt;&gt; b   // Сдвиг вправо
+</code></pre>
+<p>Для записи значений со смещением воспользуемся сдвигом.</p>
+<h5 id="Побитовые-сдвиги"><a href="#Побитовые-сдвиги" class="headerlink" title="Побитовые сдвиги"></a>Побитовые сдвиги</h5><p>Сдвиги бывают в два направления: <em>влево</em> и <em>вправо</em>. Работают очень просто: берут двоичное представление и двигают биты в указанное направление, отбрасывая биты, выходящие за границы:</p>
+<pre><code class="js">    |                                       | borders
+XXXX 0000 0000 0000 0000 0000 0000 0000 0001 XXXX original is ONE
+XXXX 0000 0000 0000 0000 0000 0000 0000 0000 1XXX shift right (1 is outside)
+XXXX 0000 0000 0000 0000 0000 0000 0000 0000 XXXX final is ZERO
+
+XXXX 0000 0000 0000 0000 0000 0000 0000 0001 XXXX original is ONE
+XXXX 0000 0000 0000 0000 0000 0000 0000 0010 XXXX shift left
+XXXX 0000 0000 0000 0000 0000 0000 0000 0010 XXXX final is TWO
+</code></pre>
+<p>Попробуйте поставить несколько бит в целочисленное значение и подвигать:</p>
+<iframe src="/bitwise-calc/shifter.html" width="100%" height="280" frameborder="0" allowfullscreen></iframe>
+<p>Когда я сказал, что мы будем записывать значения со смещением, я лукавил, мы будем их писать в начало, а после сдвигать в отведенное для них место. Например, цвет, согласно нашей схеме, должен находиться в данных со сдвигом на три бита влево, сразу после флагов полосок. Давайте попробуем сдвинуть серый цвет (3 или 011)</p>
+<pre><code class="js">const a = 3;      // 00000011
+const b = a &lt;&lt; 3; // 00011000
+</code></pre>
+<p>Аналогично с цветом, получим значения со сдвигом для всех данных о котенке:</p>
+<pre><code class="js">
+const KITTEN_COLOR_CODES = {
+    devil:      0,
+    black:      1,
+    white:      2,
+    gray:       3,
+    ginger:     4
+};
+
+const KITTEN_TAIL_OFFSET  = 0;
+const KITTEN_FACE_OFFSET  = 1;
+const KITTEN_BACK_OFFSET  = 2;
+const KITTEN_COLOR_OFFSET = 3;
+const KITTEN_AGE_OFFSET   = 7;
+
+class Kitten 
+{
+    // CONSTRUCTOR
+
+    pack() {
+        const tailData  = this.tailStripes               &lt;&lt; KITTEN_TAIL_OFFSET;
+        const faceData  = this.faceStripes               &lt;&lt; KITTEN_FACE_OFFSET; 
+        const backData  = this.backStripes               &lt;&lt; KITTEN_BACK_OFFSET;
+        const ageData   = this.age                       &lt;&lt; KITTEN_AGE_OFFSET;
+        const colorData = KITTEN_COLOR_CODES[this.color] &lt;&lt; KITTEN_COLOR_OFFSET;
+
+        // should return packed data of instance
+        return 0;
+    }
+}
+</code></pre>
+<iframe src="/bitwise-calc/packkitten.html" width="100%," height="265" frameborder="0" allowfullscreen></iframe>
+<p>Теперь предстоит полученные бинарные данные склеить в одно, склеивать данные можно оператором ИЛИ.</p>
+<h5 id="Побитовое-ИЛИ"><a href="#Побитовое-ИЛИ" class="headerlink" title="Побитовое ИЛИ"></a>Побитовое ИЛИ</h5><p>Чтобы понять побитовые <em>ИЛИ</em>, <em>И</em> и <em>НЕ И</em>, проще всего представить двоичные значения как массивы значений <code>Boolean</code>. А использование битовых операторов воспринимать как операции сравнения (<code>&amp;&amp;</code>, <code>||</code>, <code>!=</code>) логических типов (boolean) и запись результатов в третий массив. </p>
+<p>Давайте разберемся на примере:</p>
+<p>У нас есть значения <code>0110</code> (6) и <code>0011</code> (3), но мы представляем их как <code>[false, true, true, false]</code> и <code>[false, false, true, true]</code>. В цикле <code>for(let i = 0; i &lt; 4; i++)</code> сравним <code>left[i]</code> и <code>right[i]</code> оператором <code>||</code>, а результат запишем в <code>result[i]</code>.</p>
+<pre><code class="js">const left  = [false, true, true, false];
+const right = [false, false, true, true];
+let result  = [];
+
+for(let i = 0; i &lt; 4; i++) {
+    result[i] = left[i] || right[i];
+}
+</code></pre>
+<p>Надеюсь, что табличка ниже поможет разобраться.</p>
+<pre><code class="js">┌──────────────────┬───────────────────┬───────────────────┐
+│    Значения A    │    Значения Б     │ Результат при ИЛИ │
+│  bin      bool   │  bin      bool    │  bin      bool    │
+├───────┼──────────┼───────┼───────────┼───────┼───────────┤
+│   0   │   false  │   0   │   false   │   0   │   false   │
+│   1   │   true   │   0   │   false   │   1   │   true    │
+│   1   │   true   │   1   │   true    │   1   │   true    │
+│   0   │   false  │   1   │   true    │   1   │   true    │
+└───────┴──────────┴───────┴───────────┴───────┴───────────┘
+</code></pre>
+<p>Ну и результат вместе:<br><iframe src="/bitwise-calc/operations.html" width="100%" height="310" frameborder="0" allowfullscreen></iframe></p>
+<p>Как видите оператор ИЛИ «склеивает» два значения в одно, а это именно то, что нам нужно в задаче с котятами. Просто надо взять и побитово склеить все значения и вернуть как результат метода <code>pack()</code>: </p>
+<pre><code class="js">pack() {
+    const tailData  = this.tailStripes               &lt;&lt; KITTEN_TAIL_OFFSET;
+    const faceData  = this.faceStripes               &lt;&lt; KITTEN_FACE_OFFSET; 
+    const backData  = this.backStripes               &lt;&lt; KITTEN_BACK_OFFSET;
+    const ageData   = this.age                       &lt;&lt; KITTEN_AGE_OFFSET;
+    const colorData = KITTEN_COLOR_CODES[this.color] &lt;&lt; KITTEN_COLOR_OFFSET;
+
+    return tailData | backData | faceData | colorData | ageData;
+}
+</code></pre>
+<p>Выведем на экран вместе со спрайтом котенка его запакованное значение:<br><iframe src="/bitwise-calc/rendercat/rendercat01.html" width="100%" height="370" frameborder="0" allowfullscreen></iframe></p>
+<p>Как видим у каждого котенка запакованное значение уникально и теперь можно сохранять котят как массив целочисленных значений, что существенно сократит размер JSON данных, но нужно научиться их распаковывать.</p>
+<h4 id="Распаковка-данных"><a href="#Распаковка-данных" class="headerlink" title="Распаковка данных"></a>Распаковка данных</h4><p>Теперь от сервера мы получаем информацию о котенке как целочисленное значение. Например, <code>423</code> для трехмесячного рыжего котенка с полосками на хвостике, спинке и мордашке. </p>
+<p>В двоичном представлении <code>423</code> это: <code>0000 0000 0000 0000 0000 0000 1110 0111</code>. Нас же интересуют только последние 10 бит, где 0-2 - полоски, 3-6 - цвет, а 7-9 - возраст. В случае <code>423</code>, полоски — это <code>111</code>, цвет — <code>0100</code> (4), возраст — <code>0011</code> (3). </p>
+<p>Чтобы вычленить нужные нам биты, будем использовать оператор И и уже знакомые нам сдвиги.</p>
+<h5 id="Оператор-И"><a href="#Оператор-И" class="headerlink" title="Оператор И"></a>Оператор И</h5><p>Как мы уже видели выше, побитовые И, ИЛИ и НЕ И можно воспринимать как привычное сравнение булевых значений в цикле, но в отличие от ИЛИ, для И мы бы использовали оператор <code>&amp;&amp;</code>. Другими словами, <code>result[i] == left[i] &amp;&amp; right[i];</code> и принимает <code>true</code> только когда оба значения <code>true</code>. </p>
+<p>Для извлечения части битов из данных применим оператор И вместе с маской явно указывающей на интересующие данные. В случае с цветом, применение битового оператора <code>&amp;</code> для двоичного значения котенка 423 (<code>011 0100 111</code>) и маски цвета 120 (<code>000 1111 000</code>) вернет <code>000 0100 000</code>. Осталось только сдвинуть вправо полученное значение и мы видим, что это интересующий нас рыжий (ginger) цвет, или 4 в десятичном представлении. </p>
+<iframe src="/bitwise-calc/bitData.html" width="100%" height="225" frameborder="0" allowfullscreen></iframe>
+<blockquote><p>Создавать битовые можно следующей операцией:<br><code>((1 &lt;&lt; bitCount) - 1) &lt;&lt; offset</code> </p>
+</blockquote>
+<p>Как это работает: маска <code>1111 0000</code> — это <code>1111</code> со сдвигом влево на 4 бита, а <code>1111</code> — это <code>15</code> или <code>16 - 1</code>. <code>16</code> — это степерь двойки или <code>1 &lt;&lt; 4</code>. Таким образом искомая маска — это <code>((1 &lt;&lt; 4) - 1) &lt;&lt; 4</code>.</p>
+<p>Подготовим необходимые для извлечения данных маски: </p>
+<pre><code class="js">function bitMask(bitCount, offset) {
+    return ((1 &lt;&lt; bitCount) - 1) &lt;&lt; offset;
+}
+
+const KITTEN_TAIL_MASK    = bitMask(1, KITTEN_TAIL_OFFSET);
+const KITTEN_FACE_MASK    = bitMask(1, KITTEN_FACE_OFFSET);
+const KITTEN_BACK_MASK    = bitMask(1, KITTEN_BACK_OFFSET);
+const KITTEN_COLOR_MASK   = bitMask(4, KITTEN_COLOR_OFFSET);
+const KITTEN_AGE_MASK     = bitMask(3, KITTEN_AGE_OFFSET);
+</code></pre>
+<p>Теперь когда у нас есть сдвиги и маски, мы можем получить из данных интересующую нас информацию, например, возраст: <code>(data &amp; KITTEN_AGE_MASK) &gt;&gt; KITTEN_AGE_OFFSET</code>, но чтобы не писать всю конструкцию для каждого поля данных, сделаем вспомогательную функцию <code>bitData</code>:</p>
+<pre><code class="js">function bitData(value, mask, offset) {
+    return (value &amp; mask) &gt;&gt; offset;
+}
+</code></pre>
+<p>В реальном проекте советую создать для методов <code>bitMask</code>, <code>bitData</code> отдельный модуль и использовать его методы везде где они требуются. </p>
+<blockquote><p>Для разработки на Unity вы можете найти все методы работы с бинарными данными в моей библиотеке Uniful, что доступна на github</p>
+</blockquote>
+<p>Создадим в классе <code>Kitten</code> метод для распаковки значений</p>
+<pre><code class="js">
+const KITTEN_COLOR_NAMES = [
+    &quot;devil&quot;,
+    &quot;black&quot;,
+    &quot;white&quot;,
+    &quot;gray&quot;,
+    &quot;ginger&quot;     
+];
+
+class Kitten 
+{
+    // constructor
+
+    // pack()
+
+
+    static unpack(data) {
+        let instance = new Kitten();
+
+        instance.tailStripes =            !!bitData(data, KITTEN_TAIL_MASK,  KITTEN_TAIL_OFFSET);
+        instance.faceStripes =            !!bitData(data, KITTEN_FACE_MASK,  KITTEN_FACE_OFFSET);
+        instance.backStripes =            !!bitData(data, KITTEN_BACK_MASK,  KITTEN_BACK_OFFSET);
+        instance.color = KITTEN_COLOR_NAMES[bitData(data, KITTEN_COLOR_MASK, KITTEN_COLOR_OFFSET)];
+        instance.age =                      bitData(data, KITTEN_AGE_MASK,   KITTEN_AGE_OFFSET);
+
+        return instance;
+    }
+}
+</code></pre>
+<p>Теперь наша система готова! Можем проверить вывод пяти котят: <code>[791, 540, 135, 288, 0]</code></p>
+<iframe src="/bitwise-calc/rendercat/rendercat02.html" width="100%" height="370" frameborder="0" allowfullscreen></iframe>
+<h3 id="Концепция-изменилась"><a href="#Концепция-изменилась" class="headerlink" title="Концепция изменилась"></a>Концепция изменилась</h3><p>Раз уж у нас статья максимально приближенна к реальности, то без заветной фразы <em>«концепция поменялась»</em> она будет неполной. </p>
+<p>Гордые за проделанную работу мы отмечаем задачу в таск-менеджере как завершенную, но видим, что появилась новая: <strong>Изменения котят</strong>, а тело задачи говорит:</p>
+<blockquote><p>Исследования показали, что сильные независимые женщины предпочитают ограниченную палитру цветов, но любят сочетания цветов! </p>
+<p>Нужно сделать так, чтобы котята могли быть двух-цветными: один цвет для тела, второй для мордочки. </p>
+<p><img src="/bitwise-calc/rendercat/images/cat-multicolor.png" alt=""></p>
+<p><em>Новых цветов добавлять <strong>не нужно</strong>!</em></p>
+</blockquote>
+<h4 id="Изменение-данных"><a href="#Изменение-данных" class="headerlink" title="Изменение данных"></a>Изменение данных</h4><p>Сценарий внесения изменений у нас будет таким же как и реализация первой версии:</p>
+<ul>
+<li>Подготовим объект со всеми полями для данных</li>
+<li>Составим схему хранения данных</li>
+<li>Напишем реализацию для упаковки и распаковки данных</li>
+</ul>
+<p>Добавим в класс Kitten поле <code>faceColor</code>:</p>
+<pre><code class="js">class Kitten 
+{
+    constructor(color, age, tailStripes, backStripes, faceStripes, faceColor) {
+        this.color = color;
+        this.faceColor = faceColor;
+        this.age = age;        
+        this.tailStripes = tailStripes;
+        this.backStripes = backStripes;
+        this.faceStripes = faceStripes;
+    }
+}
+</code></pre>
+<p>Так уж получилось, что в рамках статьи мы инженеры по упаковке данных и магическим образом движок игры уже умеет рисовать разноцветных котят. Поэтому сразу перейдем к обновлению схемы.</p>
+<p>Что изменилось в данных? Во первах, цветов теперь меньше. То есть мы можем хранить цвет в 3-х битах, вместо 4-х изначально выделенных под увеличение палитры. Во вторых, нужно выделить еще 3 бита под дополнительный цвет. Обновим нашу схему запаковки данных: </p>
+<pre><code class="js"> FFFZZZYYYXХХ                      12 bits
+ └┬┘└┬┘└┬┘││└ Tail stripes flag     1 bit
+  │  │  │ │└─ Face stripes flag     1 bit
+  │  │  │ └── Back stripes flag     1 bit
+  │  │  └──── Color data            3 bits
+  │  └─────── Age data              3 bits
+  └────────── Face color data       3 bits
+</code></pre>
+<p>Изменим константы <code>KITTEN_COLOR_MASK</code>, <code>KITTEN_AGE_OFFSET</code> и добавим две новые для хранения сдвига цвета мордашек: <code>KITTEN_FCOLOR_OFFSET</code> и <code>KITTEN_FCOLOR_MASK</code>:</p>
+<pre><code class="js">const KITTEN_AGE_OFFSET    = 6;
+const KITTEN_FCOLOR_OFFSET = 9;
+
+const KITTEN_COLOR_MASK  = bitMask(3, KITTEN_COLOR_OFFSET);
+const KITTEN_FCOLOR_MASK = bitMask(3, KITTEN_FCOLOR_OFFSET);
+</code></pre>
+<p>По аналогии с основным цветом, добавим упаковку и распаковку цвета мордашки:</p>
+<pre><code class="js">pack() {
+
+    const tailData   = this.tailStripes                   &lt;&lt; KITTEN_TAIL_OFFSET;
+    const faceData   = this.faceStripes                   &lt;&lt; KITTEN_FACE_OFFSET; 
+    const backData   = this.backStripes                   &lt;&lt; KITTEN_BACK_OFFSET;
+    const ageData    = this.age                           &lt;&lt; KITTEN_AGE_OFFSET;
+    const colorData  = KITTEN_COLOR_CODES[this.color]     &lt;&lt; KITTEN_COLOR_OFFSET;
+
+    // FACE COLOR
+    const fcolorData = KITTEN_COLOR_CODES[this.faceColor] &lt;&lt; KITTEN_FCOLOR_OFFSET;
+
+    return tailData | backData | faceData | colorData | ageData | fcolorData;
+}
+
+static unpack(data) {
+    let instance = new Kitten();
+
+    instance.tailStripes =                !!bitData(data, KITTEN_TAIL_MASK,   KITTEN_TAIL_OFFSET);
+    instance.faceStripes =                !!bitData(data, KITTEN_FACE_MASK,   KITTEN_FACE_OFFSET);
+    instance.backStripes =                !!bitData(data, KITTEN_BACK_MASK,   KITTEN_BACK_OFFSET);
+    instance.color     = KITTEN_COLOR_NAMES[bitData(data, KITTEN_COLOR_MASK,  KITTEN_COLOR_OFFSET)];
+    instance.age =                          bitData(data, KITTEN_AGE_MASK,    KITTEN_AGE_OFFSET);
+
+
+    // FACE COLOR
+    instance.faceColor = KITTEN_COLOR_NAMES[bitData(data, KITTEN_FCOLOR_MASK, KITTEN_FCOLOR_OFFSET)];
+
+    return instance;
+}
+</code></pre>
+<p>Все мы внесли необходимые изменения! Надеюсь, что больше правок не будет, а вам понравилась статья. Ну и финальное демо котят, чтобы вы могли себя почувствовать сильной независимой женщиной и создать своего идеального друга:</p>
+<iframe src="/bitwise-calc/rendercat/rendercat03.html" width="100%" height="410" frameborder="0" allowfullscreen></iframe>
+
+          
+        </div>
+        
+          <aside id="sidebar" class="PageSide col-xs-12 col-lg-4 col-xl-3 -stick-in-parent">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/article/">article</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamedev/">gamedev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/">unity</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/article/" style="font-size: 10px;">article</a> <a href="/tags/gamedev/" style="font-size: 10px;">gamedev</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
+    </div>
+  </div>
+
+  
+    <div class="SidePanel">
+	
+    <h4 class="widget-title">Архив</h4>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">сентябрь 2016</a></li></ul>
+    </div>
+	
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/30/bitwise/">Побитовые операции над котятами</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/30/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+    </div>
+    
+    <div class="PageFooter col-xs-12">
+      <div class="row flex-items-xs-top flex-items-xs-center">
+        <div class="PageContent col-xs-12 col-lg-10 col-xl-7">
+          <div class="PageComments -card">
+            <div class="headerRow -fl -ju-between">
+              <h4 class="title">Comments</h4>
+            </div>
+
+            <div id="disqus_thread"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </article>
+</div>
+</section>
+      </div>
+       
+        <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Aler Denisov<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+     
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+    
+<script>
+  var disqus_shortname = 'alerdenisov-github-ios';
+  
+  var disqus_url = 'http://alerdenisov.github.io/2016/09/30/bitwise/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.jsdelivr.net/g/tether@1.3.7,highlight.js@9.6.0(highlight.min.js+languages/cs.min.js),jquery.owlcarousel@1.31"></script>
+
+
+<script src="https://use.typekit.net/hnx1lyt.js"></script> 
+<script>
+  try{Typekit.load({ async: true });}catch(e){}
+</script>
+
+
+<script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

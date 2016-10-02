@@ -1,0 +1,60 @@
+
+body { height:  100%; }
+#GAME {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+.game-blur {    
+    background: url(/bitwise-calc/rendercat/images/blurry.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+.game-start {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 500px;
+
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    line-height: 110px;
+    box-shadow: 
+        inset 0 -10px 10px 5px rgba(255, 220, 117, 0.52),
+        inset 0 -5px 5px 2px rgb(255, 248, 217),
+        inset 0 5px 25px 2px rgba(195, 243, 243, 0.56), 
+        0 0 15px 10px rgba(255, 245, 217, 0.19);
+
+    transition: box-shadow 0.2s ease;
+}
+
+.game-start span::before {
+    text-shadow: 1px 2px 0 rgba(255, 255, 255, 0.37);
+}
+
+.game-start:hover {
+    color: white;
+    box-shadow: 
+        inset 0 -10px 10px 5px rgba(255, 220, 117, 0.72),
+        inset 0 -5px 5px 2px rgb(255, 248, 217),
+        inset 0 5px 25px 2px rgba(195, 243, 243, 0.96), 
+        0 0 25px 10px rgba(255, 245, 217, 0.59);
+}
+
+.game-description {
+    position: absolute;
+    bottom: 9px;
+    right: 20px;
+    font-size: 12px;
+    color:  white;
+}
